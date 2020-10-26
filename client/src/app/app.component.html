@@ -1,0 +1,28 @@
+<h1>Dynamic Components Practice</h1>
+
+<div class="example-block">
+  <h2>Same module dynamic component</h2>
+  <button (click)="noLazySameModuleLoad()">No lazy load</button>
+  <button (click)="lazySameModuleLoad()">Lazy load</button>
+  <div #sameModuleDynamicComponents></div>
+</div>
+
+<div class="example-block">
+  <h2>Lazy dynamic component</h2>
+  <button (click)="lazyComponentLoad()">Lazy load</button>
+  <button (click)="lazyComponentRender()">Lazy theta render</button>
+  <div #lazyDynamicComponents></div>
+  <my-host></my-host>
+</div>
+
+<div class="example-block">
+  <h2>Lazy module dynamic component</h2>
+  <button (click)="lazyModuleLoad()">Lazy load</button>
+  <div #lazyModuleDynamicComponents></div>
+</div>
+
+<div class="example-block">
+  <h2>Remote dynamic component</h2>
+  <button (click)="remoteModuleLoad()">Remote load</button>
+  <div #remoteDynamicComponents></div>
+</div>

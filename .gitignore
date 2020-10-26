@@ -1,0 +1,7 @@
+# Idea files
+/.idea
+*.iml
+
+# System Files
+.DS_Store
+Thumbs.db
