@@ -1,5 +1,6 @@
-// import {CommonModule} from '@angular/common';
-import {NgModule} from '@angular/core';
+import {Injector, NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {createCustomElement} from '@angular/elements';
 
 import {BorComponent} from './bor.component';
 
@@ -7,6 +8,17 @@ import {BorComponent} from './bor.component';
     declarations: [
         BorComponent
     ],
-    imports: []
+    imports: [
+        BrowserModule //should be excluded for remote module loading case
+    ]
 })
-export default class BorModule {}
+export class BorModule {
+
+    constructor(private injector: Injector) {
+    }
+
+    ngDoBootstrap() {
+        const appElement = createCustomElement(BorComponent, {injector: this.injector});
+        customElements.define('bor-root', appElement);
+    }
+}

@@ -3,11 +3,11 @@ import * as angularCommon from '@angular/common';
 import * as angularPlatformBrowser from '@angular/platform-browser';
 import * as angularPlatformBrowserDynamic from '@angular/platform-browser-dynamic';
 
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import {enableProdMode} from '@angular/core';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
-import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
+import {AppModule} from './app/app.module';
+import {environment} from './environments/environment';
 
 
 const SystemJS = globalThis.System;

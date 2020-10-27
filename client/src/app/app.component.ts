@@ -111,25 +111,28 @@ export class AppComponent {
 
   async remoteModuleLoad() {
     globalThis.System.import('http://localhost:3000/bundle.js').then(module => {
-      this.compiler.compileModuleAndAllComponentsAsync(module.default).then(compiled => {
+      this.compiler.compileModuleAndAllComponentsAsync(module.BorModule).then(compiled => {
         const factory = compiled.componentFactories[0];
         const {instance} = this.remoteModule.createComponent(factory);
       });
     });
   }
 
-  async loadRemoteApp() {
-    // const module = await this.loadScript('http://localhost:3000/remote.js');
+  async bootstrapApp() {
+    await this.loadScript('http://localhost:3000/remote/main.bundle.js');
   }
 
   private loadScript(url: string) {
     return new Promise((resolve, reject) => {
-      let script = document.createElement('script');
-      script.type = 'text/javascript';
+      const content = document.getElementById('dynamicApp');
+      const script = document.createElement('script');
       script.src = url;
       script.onload = () => resolve()
       script.onerror = () => reject()
-      document.body.appendChild(script);
+      content.appendChild(script);
+
+      const element: HTMLElement = document.createElement('bor-root');
+      content.appendChild(element);
     });
   }
 
