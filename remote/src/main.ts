@@ -8,5 +8,7 @@ if (environment.production) {
     enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(BorModule)
-    .catch(err => console.error(err));
+globalThis.remote_app_bootstrap = () => {
+    platformBrowserDynamic().bootstrapModule(BorModule)
+        .catch(err => console.error(err));
+}

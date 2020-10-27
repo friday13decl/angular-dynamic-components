@@ -2,7 +2,7 @@ import {
   Compiler,
   Component,
   ComponentFactoryResolver, INJECTOR,
-  Injector,
+  Injector, NgZone,
   SimpleChange,
   ViewChild,
   ViewContainerRef, ɵrenderComponent, ɵɵdirectiveInject
@@ -30,6 +30,7 @@ export class AppComponent {
   private testSub: Subscription;
 
   constructor(private cfr: ComponentFactoryResolver,
+              private zone: NgZone,
               private injector: Injector,
               private compiler: Compiler) {
   }
@@ -120,6 +121,9 @@ export class AppComponent {
 
   async bootstrapApp() {
     await this.loadScript('http://localhost:3000/remote/main.bundle.js');
+    this.zone.runOutsideAngular(() => {
+      globalThis.remote_app_bootstrap();
+    });
   }
 
   private loadScript(url: string) {
